@@ -1,0 +1,119 @@
+{
+  "best_model": "logistic regression",
+  "data": {
+    "n_train": 2400,
+    "n_test": 600,
+    "failure_rate_train": 0.34541666666666665,
+    "failure_rate_test": 0.305
+  },
+  "results": {
+    "baseline (always predict pass)": {
+      "cv_auc_mean": 0.5,
+      "accuracy": 0.695,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "roc_auc": 0.5,
+      "confusion_matrix": [
+        [
+          417,
+          0
+        ],
+        [
+          183,
+          0
+        ]
+      ]
+    },
+    "logistic regression": {
+      "cv_auc_mean": 0.7121151371816171,
+      "accuracy": 0.675,
+      "precision": 0.47619047619047616,
+      "recall": 0.6557377049180327,
+      "f1": 0.5517241379310345,
+      "roc_auc": 0.7275884210664255,
+      "confusion_matrix": [
+        [
+          285,
+          132
+        ],
+        [
+          63,
+          120
+        ]
+      ]
+    },
+    "random forest": {
+      "cv_auc_mean": 0.6971736939679465,
+      "accuracy": 0.6666666666666666,
+      "precision": 0.463519313304721,
+      "recall": 0.5901639344262295,
+      "f1": 0.5192307692307693,
+      "roc_auc": 0.7190313323112003,
+      "confusion_matrix": [
+        [
+          292,
+          125
+        ],
+        [
+          75,
+          108
+        ]
+      ]
+    }
+  },
+  "feature_importance": [
+    [
+      "prev_build_failed",
+      0.6633960088997272
+    ],
+    [
+      "dependency_changed",
+      0.342223789406716
+    ],
+    [
+      "is_night",
+      0.31175156996296804
+    ],
+    [
+      "author_prior_builds",
+      0.23164674602763366
+    ],
+    [
+      "is_friday",
+      0.19000338512049417
+    ],
+    [
+      "commits_in_push",
+      0.14053520752803458
+    ],
+    [
+      "files_changed",
+      0.13382722560104324
+    ],
+    [
+      "lines_deleted",
+      0.13021311198671873
+    ],
+    [
+      "tests_changed",
+      0.1008198535211121
+    ],
+    [
+      "total_lines_changed",
+      0.08842888885161451
+    ],
+    [
+      "lines_added",
+      0.06259491467791893
+    ],
+    [
+      "hour_of_day",
+      0.02211995756708143
+    ],
+    [
+      "day_of_week",
+      0.02028985646930199
+    ]
+  ]
+}
