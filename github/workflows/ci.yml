@@ -1,0 +1,35 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run tests
+        run: |
+          set -o pipefail
+          pytest 2>&1 | tee build.log
+      - name: Generate data and train the model
+        run: |
+          python -m src.generate_data
+          python -m src.train
+      - name: Show results in the job summary
+        if: always()
+        run: |
+          cat reports/metrics.md >> "$GITHUB_STEP_SUMMARY"
+          echo '' >> "$GITHUB_STEP_SUMMARY"
+          echo '## Example predictions' >> "$GITHUB_STEP_SUMMARY"
+          python -m src.predict --demo | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: Upload model and reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: model-and-reports
+          path: |
+            models/
+            reports/
